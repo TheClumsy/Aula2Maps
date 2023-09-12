@@ -67,6 +67,12 @@ def search_page(request):
 
 
 @staff_member_required
+def show_full_map(request):
+    catalonia_map = generate_map()
+    return render(request, 'full_map.html', {'catalonia_map': catalonia_map._repr_html_()})
+
+
+@staff_member_required
 def add_location(request):
     if not request.user.is_authenticated:
         return redirect(reverse('login_page'))
