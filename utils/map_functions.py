@@ -2,7 +2,7 @@ import folium
 
 
 def generate_popup(name):
-    link = f"""<a href="/valuations/?name={name}" target="_blank">Go to Valuations</a>"""
+    link = f"""<a href="/valuations/?name={name}" target="_blank">Veure les valoracions</a>"""
     popup = folium.Popup(link, max_width=500)
     return popup
 
