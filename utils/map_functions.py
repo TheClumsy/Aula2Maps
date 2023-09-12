@@ -2,13 +2,13 @@ import folium
 
 
 def generate_popup(name):
-    link = f"""<a href="/valuations/?name={name}" target="_blank">Veure les valoracions</a>"""
+    link = f"""<a href="/valuations/?name={name}" target="_blank">Informació</a>"""
     popup = folium.Popup(link, max_width=500)
     return popup
 
 
 def generate_color_by_space(space: str):
-    color_mapping = {'Escola': 'red', 'Casa de Colònies': 'blue', 'Parc': 'green', 'Activitat': 'yellow'}
+    color_mapping = {'Escola': 'red', 'Casa de Colònies': 'blue', 'Parc': 'green', 'Activitat': 'orange'}
 
     return color_mapping[space]
 

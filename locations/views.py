@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.urls import reverse
 from utils.map_functions import generate_map
 from utils.locations import check_location, search_for_space
+from utils.coordinates import coordinates_format
+from utils.map_functions import create_marker
+from .models import Space
 
 
 def manage_popup(request):
@@ -69,6 +72,30 @@ def search_page(request):
 @staff_member_required
 def show_full_map(request):
     catalonia_map = generate_map()
+
+    if request.method == 'POST':
+        result = request.POST.copy()
+
+        schools = result.get('nom_escola', None)
+        house = result.get('casa_colonies', None)
+        parks = result.get('parc', None)
+        activities = result.get('activitat', None)
+
+        options = [schools, house, parks, activities]
+
+        selected_options = [option for option in options if option]
+
+        spaces = Space.objects.all().filter(espai__in=selected_options).values_list('nom', 'coordenades', 'espai')
+
+        solutions = {}
+
+        for space in spaces:
+            name = space[0]
+            coordinates = coordinates_format(space[1])
+            type_space = space[2]
+
+            catalonia_map = create_marker(catalonia_map, coordinates, type_space, name)
+
     return render(request, 'full_map.html', {'catalonia_map': catalonia_map._repr_html_()})
 
 
