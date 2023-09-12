@@ -5,7 +5,7 @@
         <div class="col-md-6 offset-md-3 mt-3">
             <form class="d-flex" method="POST" action="{% url 'valuations_page' %}">
                 {% csrf_token %}
-                <input class="form-control me-2 w-50" type="search" placeholder="Nom de l'Espai" aria-label="Search" name="nom" value="{{ nom }}">
+                <input class="form-control me-2 w-50" type="search" placeholder="Nom de l'Espai" aria-label="Search" name="nom" value="{{ name }}">
                 <button class="btn btn-primary" type="submit" id="button-addon2">Cerca</button>
             </form>
         </div>

@@ -20,11 +20,12 @@ def add_valuations(request):
 
 
 def valuations_page(request):
+    print('i am here')
     if request.method == 'POST':
         try:
             result, name, data, labels = show_valuations(request)
 
-            return render(request, 'valuations.html', {'display': True, 'valuations': result, 'nom': name,
+            return render(request, 'valuations.html', {'display': True, 'valuations': result, 'name': name,
                                                        'information': data, 'labels': labels})
         except IndexError:
             pass

@@ -7,6 +7,7 @@ from utils.locations import check_location, search_for_space
 
 
 def manage_popup(request):
+    print('I got inside here!')
     if request.method == 'POST':
         name = request.POST.get('nom', None)
 
@@ -38,6 +39,7 @@ def map_page(request):
 
 def search_page(request):
     catalonia_map = generate_map()
+    popup_url = reverse('popup')
 
     if request.method == 'POST':
         result = request.POST.copy()
@@ -56,6 +58,8 @@ def search_page(request):
 
         except AttributeError:
             result['catalonia_map'] = catalonia_map
+
+        result['popup'] = popup_url
 
         return render(request, 'search.html', result)
 

@@ -1,18 +1,10 @@
 import folium
-import branca
-from pathlib import Path
-from jinja2 import Environment, FileSystemLoader
 
-# Define the path to the templates directory
-templates_dir = Path(__file__).resolve().parent.parent / 'locations' / 'templates'
 
-# Create a Jinja2 environment with a loader
-jinja2_env = Environment(loader=FileSystemLoader(str(templates_dir)))
-
-def generate_popup(space_name):
-    template = jinja2_env.get_template('popup.html')
-    rendered_template = template.render(information=space_name)
-    return rendered_template
+def generate_popup(name):
+    link = f'<a href="/valuations/?name={name}" target="_blank">Veure Fitxa</a>'
+    popup = folium.Popup(link, max_width=500)
+    return popup
 
 
 def generate_color_by_space(space: str):
@@ -35,9 +27,7 @@ def generate_map():
 def create_marker(catalonia_map, coordinates, space, name):
     color = generate_color_by_space(space)
 
-    popup_html = generate_popup(name)
-    iframe = branca.element.IFrame(html=popup_html, width=200, height=100)
-    popup = folium.Popup(iframe, max_width=500)
+    popup = generate_popup(name)
 
     folium.Marker(location=coordinates, tooltip=name, icon=folium.Icon(color=color), popup=popup).add_to(catalonia_map)
 

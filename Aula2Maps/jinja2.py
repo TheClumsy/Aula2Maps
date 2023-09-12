@@ -1,10 +1,15 @@
-from jinja2 import Environment
+from django.conf import settings
 from django.urls import reverse
-from django.contrib.staticfiles.storage import staticfiles_storage
+from django.templatetags.static import static
+
+from jinja2 import Environment
 
 
 def environment(**options):
     env = Environment(**options)
-    env.globals.update({"static": staticfiles_storage.url, "url": reverse})
-
+    env.globals.update({
+        'static': static,
+        'url': reverse,
+        'settings': settings,
+    })
     return env
