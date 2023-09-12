@@ -1,0 +1,26 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+        <form method="POST" action="{% url 'add_valuations' %}" class="m-3">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="exampleFormControlInput1" class="form-label">Espai</label>
+                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput1" placeholder="Nom Espai" name="nom">
+            </div>
+            <br>
+            <div class="form-group col-md-3">
+                <label for="exampleFormControlInput2" class="form-label">Títol</label>
+                <input type="text" class="form-control form-control-sm" id="exampleFormControlInput2" placeholder="Títol Valoració" name="titol">
+            </div>
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Valoració</label>
+            <input class="form-control" id="exampleFormControlTextarea1" placeholder="Escriu aquí la teva valoració" name="valoracio">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Afegeix</button>
+    </form>
+
+{% endblock %}

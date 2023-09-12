@@ -1,0 +1,44 @@
+{% extends 'navbar.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3 mt-3">
+            <form class="d-flex" method="POST" action="{% url 'valuations_page' %}">
+                {% csrf_token %}
+                <input class="form-control me-2 w-50" type="search" placeholder="Nom de l'Espai" aria-label="Search" name="nom" value="{{ nom }}">
+                <button class="btn btn-primary" type="submit" id="button-addon2">Cerca</button>
+            </form>
+        </div>
+    </div>
+
+    {% if display %}
+
+        <div class="container mt-5">
+          <div class="row">
+            <h1>Informació</h1>
+            <hr>
+            <div class="col">
+              {% for label in labels %}
+                <p><strong>{{ label }}:</strong></p>
+              {% endfor %}
+            </div>
+            <div class="col">
+              {% for item in information %}
+                <p>{{ item }}</p>
+              {% endfor %}
+            </div>
+          </div>
+          <hr>
+          <h1 class="mt-4">Valoracions</h1>
+          {% for title, valuation in valuations.items %}
+            <div class="card mt-3 w-75 mx-auto">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>{{ title }}</strong></h5>
+                    <p class="card-text">{{ valuation }}</p>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,5 +1,5 @@
 """
-URL configuration for Aula2Maps project.
+URL configuration for Aula2Django project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -15,8 +15,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+
+# aquests imports de sota són per poder fer l'executable
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('users.urls')),
     path('admin/', admin.site.urls),
-]
+    path('locations/', include('locations.urls')),
+    path('valuations/', include('valuations.urls'))
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # això últim també és per l'executable

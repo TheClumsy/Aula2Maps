@@ -1,0 +1,26 @@
+{% extends 'navbar.html' %}
+{% block content %}
+          <div>
+          <div class="container" >
+             <div class="row mt-3" >
+                   <div class="col-md-12 offset-md-0" >
+                        {{ catalonia_map|safe }}
+                   </div>
+             </div>
+          </div>
+      </div>
+
+    <div class="text-center mt-3">
+        <form method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input type="hidden" name="nom_escola" value="{{ nom_escola }}">
+            <input type="hidden" name="radius" value="{{ radius }}">
+            <input type="hidden" name="catalonia_map" value="{{ catalonia_map }}">
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Torna Enrera</button>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}

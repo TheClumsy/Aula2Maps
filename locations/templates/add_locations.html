@@ -1,0 +1,80 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+            <div class="container">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <form style="max-width: 800px; margin: 50px;" method="POST" action="{% url 'add_location' %}">
+                        <h1> AFEGIM ESPAIS!</h1>
+                        <br>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nom", name="nom" value="{{ nom }}">
+                        </div>
+                        <br>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="espai" id="flexRadioDefault1" value="Escola">
+                          <label class="form-check-label" for="flexRadioDefault1">
+                            Escola
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="espai" id="flexRadioDefault2" value="Casa de Colònies">
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Casa de Colònies
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="espai" id="flexRadioDefault2" value="Parc">
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Parc
+                          </label>
+                        </div>
+
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="espai" id="flexRadioDefault2" value="Activitat">
+                          <label class="form-check-label" for="flexRadioDefault2">
+                            Activitat
+                          </label>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" value="{{ email }}">
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Telèfon" name="telefon" value="{{ telefon }}">
+                        </div>
+
+                        <br>
+
+                        <div class="form-group">
+                            <input type="url" class="form-control" id="exampleInputEmail1" placeholder="Pàgina Web", name="web" value="{{ web }}">
+                        </div>
+
+                        <br>
+                        <h6>Prem cercar per generar les coordenades automàticament</h6>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Coordenades" name="coordenades" value="{% if coordenades %}{{ coordenades }}{% endif %}">
+
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-primary">Cercar</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="mt-5"> <!-- Afegim un marge superior -->
+                        {{ catalonia_map|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
