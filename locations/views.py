@@ -9,16 +9,6 @@ from utils.map_functions import create_marker
 from .models import Space
 
 
-def manage_popup(request):
-    if request.method == 'POST':
-        name = request.POST.get('nom', None)
-
-        return render(request, 'valuations.html', {'nom': name})
-
-    else:
-        return render(request, 'valuations.html', {})
-
-
 def map_page(request):
     """
     It brings us to the map page
