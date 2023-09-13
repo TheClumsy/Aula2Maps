@@ -87,8 +87,6 @@ def show_full_map(request):
 
         spaces = Space.objects.all().filter(espai__in=selected_options).values_list('nom', 'coordenades', 'espai')
 
-        solutions = {}
-
         for space in spaces:
             name = space[0]
             coordinates = coordinates_format(space[1])
