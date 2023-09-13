@@ -10,7 +10,6 @@ from .models import Space
 
 
 def manage_popup(request):
-    print('I got inside here!')
     if request.method == 'POST':
         name = request.POST.get('nom', None)
 
@@ -53,6 +52,10 @@ def search_page(request):
 
         except IndexError:
             messages.error(request, "Escola no trobada a la base de dades!")
+            catalonia_map = generate_map()
+            return render(request, 'search.html', {'catalonia_map': catalonia_map._repr_html_()})
+
+        except AssertionError:
             catalonia_map = generate_map()
             return render(request, 'search.html', {'catalonia_map': catalonia_map._repr_html_()})
 
@@ -109,7 +112,5 @@ def add_location(request):
         result['catalonia_map'] = catalonia_map._repr_html_()
     else:
         result = {'catalonia_map': catalonia_map._repr_html_()}
-
-    print("Print Random per poder fer commit. Estic locations.views 79")
 
     return render(request, 'add_locations.html', result)

@@ -24,6 +24,7 @@ def search_for_space(request, catalonia_map):
     school = Space.objects.all().filter(nom=school_name).values_list('coordenades', 'espai', 'email', 'telefon', 'web')
     spaces = Space.objects.all().filter(espai__in=selected_spaces).values_list('nom', 'coordenades', 'espai',
                                                                                'email', 'telefon', 'web')
+    assert school
 
     solutions = {school_name: school[0]}
 
