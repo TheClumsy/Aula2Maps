@@ -13,6 +13,12 @@ def generate_color_by_space(space: str):
     return color_mapping[space]
 
 
+def generate_icon_by_space(space):
+    icon_mapping = {'Escola': 'school', 'Casa de Colònies': 'shop', 'Parc': 'tree', 'Activitat': 'fly'}
+
+    return icon_mapping[space]
+
+
 def generate_map():
     """
     Function that generates Catalonia's map
